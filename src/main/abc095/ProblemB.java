@@ -12,44 +12,33 @@ public class ProblemB {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
-        boolean eol = false;
-
         int count = sc.nextInt(); // 材料の種類数
         int gram = sc.nextInt(); // 材料の総量
-
-        List<Integer> costs = new ArrayList<>();
+        int sum = 0; // 全ドーナツを1つずつ作る場合の必要材料
+        int primal = 0; // ループ中で注目しているドーナツの必要材料
+        int min = 1000; // ドーナツ一つを作る際の最少材料量
 
         for (int i=0; i < count; i++) {
-            costs.add(sc.nextInt());
+        	primal = sc.nextInt();
+        	sum = sum + primal;
+        	if (min > primal) {
+        		min = primal;
+			}
         }
-
-        System.out.println(calcMax(count, gram, costs));
+        System.out.println(calcMax(count, gram, min, sum));
     }
 
-    public static int calcMax(int count, int gram, List<Integer> costs) {
+    public static int calcMax(int count, int gram, int min, int sum) {
+		// まず１つずつドーナツを作る
+		int total = count; // 作ることのできるドーナツの量
+		gram = gram - sum;
 
-        // 最小の必要材料量を取得
-        Optional<Integer> minObj = costs.stream().min(Comparator.naturalOrder());
-        int min = minObj.get();
-
-        // 全てのドーナツを一つずつ作る場合の必要材料量
-        int sum = costs.stream().mapToInt(Integer::intValue).sum();
-
-        // 作ることのできるドーナツの量
-        int total = 0;
-
-        // まず１つずつドーナツを作る
-        total = count;
-        gram = gram - sum;
-
-        // 残った材料で、最も少ない材料で作ることができるドーナツを作る
-        while(gram >= min) {
-            gram = gram - min;
-            total = total + 1;
-        }
-
-        return total;
-    }
-
+		// 残った材料で、最も少ない材料で作ることができるドーナツ、を作れるだけ作る
+		while(gram >= min) {
+			gram = gram - min;
+			total = total + 1;
+		}
+		return total;
+	}
 
 }
