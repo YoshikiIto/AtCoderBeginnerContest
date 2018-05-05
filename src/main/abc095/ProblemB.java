@@ -4,7 +4,7 @@ import java.util.*;
 
 
 /*
-https://beta.atcoder.jp/contests/abc095/tasks/abc095_a
+https://beta.atcoder.jp/contests/abc095/tasks/abc095_b
  */
 
 public class ProblemB {
@@ -25,10 +25,10 @@ public class ProblemB {
         		min = primal;
 			}
         }
-        System.out.println(calcMax(count, gram, min, sum));
+        System.out.println(calcMin(count, gram, min, sum));
     }
 
-    public static int calcMax(int count, int gram, int min, int sum) {
+    public static int calcMin(int count, int gram, int min, int sum) {
 		// まず１つずつドーナツを作る
 		int total = count; // 作ることのできるドーナツの量
 		gram = gram - sum;
