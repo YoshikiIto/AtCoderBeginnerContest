@@ -1,0 +1,3 @@
+# AtCoderBeginnerContest
+
+このリポジトリは、私がAtCoder BeginnerContestの本番中及び終了後に勉強のために書いたコードを入れておくための個人的なリポジトリです。
